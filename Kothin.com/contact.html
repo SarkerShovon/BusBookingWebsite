@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+  <style>
+    body {
+      background-image: url('./static/13.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .navbar__a {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 50%;
+    }
+
+    .navbar__a a {
+      text-align: center;
+      padding: 6px 6px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      cursor: pointer;
+      margin: 0% 2%;
+    }
+
+    .navbar__a a:hover {
+      color: rgb(236, 231, 231);
+      background-color: rgba(5, 61, 110, 0.771);
+      border-radius: 4px;
+    }
+
+    .nav__flex a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .nav__flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 40px;
+      border-radius: 30px;
+      background-color: white;
+      padding: 2px 30px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      font-family: cursive;
+    }
+
+    #logoutbtn {
+      display: none;
+      text-align: center;
+      padding: 6px 6px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      cursor: pointer;
+      margin: 0% 2%;
+    }
+
+    #logoutbtn:hover {
+      color: rgb(236, 231, 231);
+      background-color: rgba(244, 41, 10, 0.771);
+      border-radius: 4px;
+    }
+
+    #register {
+      display: block;
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    }
+
+    .contact_form {
+      width: 500px;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 10px 20px;
+
+    }
+
+    .contact_form>label>h3,
+    .contact_form>button>h3 {
+      margin: 5px;
+    }
+
+    input[type=text],
+    input[type=email] {
+      width: 100%;
+      height: 25px;
+    }
+
+    .report {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .submit {
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #e3812b;
+      color: #fff;
+      margin-right: 10px;
+    }
+
+    #respon {
+      display: none;
+    }
+
+    .response {
+      text-align: center;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav__flex">
+    <a href="/">
+      <h5 class="logo">Kothin.com</h5>
+    </a>
+    <div class="navbar__a">
+      <a href="/"><strong> Home</strong></a>
+      <a href="/about"><strong> About</strong></a>
+      <a href="/contact"><strong>Contact</strong></a>
+      <a href="/menu"><strong>Buy Tickets</strong></a>
+      <a href="/login" id="login"><strong>Login</strong></a>
+      <div id="logoutbtn" onclick="logout()"><strong>Logout</strong></div>
+      <!-- <button id="logoutbtn" onclick="logout()"><strong>Logout</strong></button> -->
+      <a href="/register" id="register"><strong>Register</strong></a>
+    </div>
+  </div>
+  <br>
+
+  <div class="report">
+    <h2>Please, for any kind of technical issue or problem contact us here.</h2>
+    <h2>Thank You</h2>
+  </div>
+  <div class="contact">
+    <form action="/contact" method="post" class="contact_form" id="contact_form">
+      <h2>Contact Us</h2>
+      <label for="name">
+        <h3>Your Name</h3>
+      </label>
+      <input type="text" name="name" id="name" placeholder="Enter your name" required>
+      <label for="email">
+        <h3>Your Mail</h3>
+      </label>
+      <input type="email" name="email" id="email" placeholder="Enter your email address" required>
+      <!-- <label for="des"><h3>Description</h3></label>
+      <input type="text" name="des" id="des" placeholder="Enter your words"> -->
+      <label for="description">
+        <h3>Description</h3>
+      </label>
+      <textarea name="description" id="description" cols="66" rows="10" placeholder="Describe your words"
+        required></textarea>
+      <button type="submit" id="submit" class="submit">
+        <h3>Submit</h3>
+      </button>
+      <button type="reset" class="submit">
+        <h3>Reset</h3>
+      </button>
+    </form>
+    <div id="respon">
+      <div class="response">
+        <h3>Thank you for your Response</h3>
+        <h3>We will try to solve these issues and improve our website in Future.</h3>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('respon').style.display = 'none';
+    let info = sessionStorage.getItem('userinfo');
+    info = JSON.parse(info);
+    console.log(info);
+    document.getElementById('login').innerHTML = `<strong>${info.name}</strong>`
+    if (info) {
+      logoutbtn = document.getElementById('logoutbtn');
+      logoutbtn.style.display = 'block'
+      register = document.getElementById('register')
+      register.style.display = 'none'
+    }
+    document.getElementById('contact_form').addEventListener('submit', function (event) {
+      event.preventDefault();
+      let nam = document.getElementById('name').value;
+      let mail = document.getElementById('email').value;
+      let descrip = document.getElementById('description').value;
+      fetch('/contact', {
+        method: "POST",
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ nam, mail, descrip })
+      }).then(response => {
+        return response.json();
+      }).then(result => {
+        console.log(result);
+        if (result.status == 'done') {
+          document.getElementById('respon').style.display = 'block';
+        }
+      })
+    })
+    function logout() {
+
+      sessionStorage.clear();
+      console.log(sessionStorage.getItem('userinfo'))
+      register = document.getElementById('register')
+      register.style.display = 'block'
+      logoutbtn = document.getElementById('logoutbtn');
+      logoutbtn.style.display = 'none'
+      document.getElementById('login').innerHTML = `<strong>Login</strong>`
+      window.location.href = '/login'
+
+
+    }
+
+  </script>
+</body>
+
+</html>

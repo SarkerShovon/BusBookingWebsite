@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+  <style>
+    body {
+      background-image: url('./static/13.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .navbar__a {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 50%;
+    }
+
+    .navbar__a a {
+      text-align: center;
+      padding: 6px 6px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      cursor: pointer;
+      margin: 0% 2%;
+    }
+
+    .navbar__a a:hover {
+      color: rgb(236, 231, 231);
+      background-color: rgba(5, 61, 110, 0.771);
+      border-radius: 4px;
+    }
+
+    .nav__flex a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .nav__flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 40px;
+      border-radius: 30px;
+      background-color: white;
+      padding: 2px 30px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      font-family: cursive;
+    }
+
+    .about {
+      margin: 2% 60%;
+      width: 500px;
+      border-top-left-radius: 100px;
+      border-bottom-right-radius: 100px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      font-size: large;
+      padding: 40px 40px;
+      background-color: rgb(255, 255, 255);
+    }
+    #logoutbtn {
+      display: none;
+      text-align: center;
+      padding: 6px 6px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      cursor: pointer;
+      margin: 0% 2%;
+    }
+
+    #logoutbtn:hover {
+      color: rgb(236, 231, 231);
+      background-color: rgba(244, 41, 10, 0.771);
+      border-radius: 4px;
+    }
+  #register{
+    display: block;
+}
+  </style>
+</head>
+
+<body>
+  <div class="nav__flex">
+    <a href="/">
+      <h5 class="logo">Kothin.com</h5>
+    </a>
+    <div class="navbar__a">
+      <a href="/"><strong> Home</strong></a>
+      <a href="/about"><strong> About</strong></a>
+      <a href="/contact"><strong>Contact</strong></a>
+      <a href="/menu"><strong>Buy Tickets</strong></a>
+      <a href="/login" id="login"><strong>Login</strong></a>
+      <div id="logoutbtn" onclick="logout()"><strong>Logout</strong></div>
+      <!-- <button id="logoutbtn" onclick="logout()"><strong>Logout</strong></button> -->
+      <a href="/register" id="register"><strong>Register</strong></a>
+    </div>
+  </div>
+  <br>
+  <div class="about">
+    <ul>
+      <li>
+        With our user-friendly interface and a wide selection of bus operators, we aim to provide you with
+        a seamless booking experience.
+      </li>
+      <li>
+        Our website offers a comprehensive search tool, allowing you to find the best routes, timings, and fares for
+        your journey. You can filter your search by departure and arrival points, travel dates, and bus operators. We also
+        provide detailed information about each bus operator, including customer ratings and reviews, to help you make
+        an informed decision.
+      </li>
+      <li>
+        We understand the importance of secure payment options, and that's why we offer multiple payment methods such as
+        credit/debit cards, net banking, and e-wallets. Our website ensures that all your transactions are safe and
+        secure,so you can book your bus tickets with complete peace of mind.
+      </li>
+      <li>
+        In case of any queries or issues, our customer support team is always ready to assist you. You can contact us
+        through our helpline number or email support, and we will be happy to help you.
+      </li>
+      <li>
+        At our bus booking website, we believe in providing a hassle-free booking experience for our customers, and we
+        are committed to making your travel plans smooth and stress-free. Book your bus tickets now and embark on your next
+        adventure with us!
+      </li>
+    </ul>
+
+  </div>
+  <script>
+    let info = sessionStorage.getItem('userinfo');
+    info = JSON.parse(info);
+    console.log(info);
+    document.getElementById('login').innerHTML = `<strong>${info.name}</strong>`
+    if(info)
+    {
+      logoutbtn=document.getElementById('logoutbtn');
+      logoutbtn.style.display='block'
+      register=document.getElementById('register')
+      register.style.display='none'
+    }
+    function logout() {
+
+      sessionStorage.clear();
+      console.log(sessionStorage.getItem('userinfo'))
+      register=document.getElementById('register')
+      register.style.display='block'
+      logoutbtn=document.getElementById('logoutbtn');
+      logoutbtn.style.display='none'
+      document.getElementById('login').innerHTML = `<strong>Login</strong>`
+      window.location.href='/login'
+
+
+    }
+    
+  </script>
+</body>
+
+</html>

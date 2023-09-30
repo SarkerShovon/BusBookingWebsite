@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link href="https://unsplash.com/s/photos/bus"> -->
+  <title>Menu</title>
+  <style>
+    body {
+      background: url('./static/13.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .navbar__a {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 50%;
+    }
+
+    .navbar__a a {
+      text-align: center;
+      padding: 6px 6px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      cursor: pointer;
+      margin: 0% 2%;
+    }
+
+    .navbar__a a:hover {
+      color: rgb(236, 231, 231);
+      background-color: rgba(5, 61, 110, 0.771);
+      border-radius: 4px;
+    }
+
+    /* .navbar__a a:active {
+      color: rgb(236, 231, 231);
+      background-color: rgba(5, 61, 110, 0.771);
+      border-radius: 4px;
+    } */
+
+    .nav__flex a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .nav__flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 40px;
+      border-radius: 30px;
+      background-color: white;
+      padding: 2px 30px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      font-family: cursive;
+    }
+
+    .home {
+      /* border: 4px solid red; */
+      text-align: center;
+      font-size: large;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      padding: 10px;
+      color: rgb(0, 0, 0);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .buy_btn {
+      border-radius: 15px;
+      cursor: pointer;
+      background-color: rgb(28, 230, 51);
+    }
+
+    .form {
+      display: none;
+      /* background-color: #fff; */
+    }
+
+    .inform {
+
+      background: white;
+      padding: 30px 30px;
+      width: 300px;
+      align-items: center;
+      border-radius: 10px;
+    }
+
+
+    #logoutbtn {
+      display: none;
+      text-align: center;
+      padding: 6px 6px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      cursor: pointer;
+      margin: 0% 2%;
+    }
+
+    #logoutbtn:hover {
+      color: rgb(236, 231, 231);
+      background-color: rgba(244, 41, 10, 0.771);
+      border-radius: 4px;
+    }
+
+    #register {
+      display: block;
+    }
+
+    #search {
+      color: black;
+      background-color: rgb(48, 252, 30);
+      height: 35px;
+      width: 130px;
+      border-radius: 6px;
+      font-size: medium;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+
+    input[type=number],
+    input[type=date],
+    select {
+      width: 100%;
+      height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav__flex">
+    <a href="/">
+      <h5 class="logo">Kothin.com</h5>
+    </a>
+    <div class="navbar__a">
+      <a href="/adminpanel"><strong> Home</strong></a>
+      <a href="/feedback"><strong> Feedback</strong></a>
+      <a href="/reschedule"><strong>Reschedule Buses</strong></a>
+      <a href="/adminavailable"><strong>Sell Tickets</strong></a>
+      <a href="/login" id="login"><strong>Login</strong></a>
+      <div id="logoutbtn" onclick="logout()"><strong>Logout</strong></div>
+      <!-- <button type="button" id="logoutbtn" onclick="logout()"><strong>Logout</strong></button> -->
+      <a href="/register" id="register"><strong>Register</strong></a>
+    </div>
+  </div>
+  <br>
+  <div class="home" id="home">
+    <h1>Book your journey with ease and comfort - the fastest and simplest way to book your bus tickets!</h1>
+  </div>
+  <div class="container">
+    <button class="buy_btn" onclick="run()" id="buy_btn">
+      <h2>Re-schedule</h2>
+    </button>
+    <div class="form" id="form">
+      <div class="inform">
+        <form action="/menu" method="post" id="ticket_form">
+          <h2>Choose Ticket</h2>
+          <div>
+            <label for="start"><strong>Starting From</strong></label><br>
+            <select name="starting" id="start" required>
+              <option value="">Choose here</option>
+              <option value="Dhaka">Dhaka</option>
+              <option value="Rajshahi">Rajshahi</option>
+              <option value="Khulna">Khulna</option>
+              <option value="Chittagang">Chittagang</option>
+              <option value="Borishal">Borishal</option>
+              <option value="Rangpur">Rangpur</option>
+              <option value="Mymenshingh">Mymenshingh</option>
+            </select>
+          </div>
+          <br>
+          <div>
+            <label for="end"><strong>Destination</strong></label><br>
+            <select name="destination" id="end" required>
+              <option value="">Choose here</option>
+              <option value="Dhaka">Dhaka</option>
+              <option value="Rajshahi">Rajshahi</option>
+              <option value="Khulna">Khulna</option>
+              <option value="Chittagang">Chittagang</option>
+              <option value="Borishal">Borishal</option>
+              <option value="Rangpur">Rangpur</option>
+              <option value="Mymenshingh">Mymenshingh</option>
+            </select>
+          </div>
+          <br>
+          <div>
+            <label for="doj"><strong>Date of Journey</strong></label><br>
+            <input type="date" name="doj" id="doj" required>
+          </div>
+          <br>
+          <div>
+            <label for="deperture"><strong>Deperture</strong></label><br>
+            <select name="deperture" id="deperture">
+                <option value="10:30">10:30 am</option>
+                <option value="04:30">04:30 pm</option>
+            </select>
+          </div>
+          <br>
+          <button type="submit" id="delete"><strong>Delete Bus</strong></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // alert("hello there!");
+    window.addEventListener('popstate',()=>{
+      window.location.reload();
+    })
+    console.log(sessionStorage);
+    let info = sessionStorage.getItem('userinfo');
+    info = JSON.parse(info);
+    console.log(info);
+    document.getElementById('login').innerHTML = `<strong>${info.name}</strong>`
+    if (info) {
+      logoutbtn = document.getElementById('logoutbtn');
+      logoutbtn.style.display = 'block'
+      register = document.getElementById('register')
+      register.style.display = 'none'
+    }
+    function run() {
+      if (info) {
+        let form = document.getElementById('form');
+        let btn = document.getElementById('buy_btn');
+        if (form.style.display = 'none') {
+          form.style.display = 'block';
+          btn.style.display = 'none';
+        }
+      }
+      else {
+        window.location.href = '/login'
+      }
+    }
+    function logout() {
+
+      sessionStorage.clear();
+      console.log(sessionStorage.getItem('userinfo'))
+      register = document.getElementById('register')
+      register.style.display = 'block'
+      logoutbtn = document.getElementById('logoutbtn');
+      logoutbtn.style.display = 'none'
+      document.getElementById('login').innerHTML = `<strong>Login</strong>`
+      window.location.href = '/login'
+    }
+
+    document.getElementById('ticket_form').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent default form submission behavior
+
+      let starting = document.getElementById('start').value;
+      let destination = document.getElementById('end').value;
+      let doj = document.getElementById('doj').value;
+      let depert = document.getElementById('deperture').value;
+
+      const bus = { starting, destination, doj, depert };
+
+      fetch('/menu1', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bus)
+      })
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          sessionStorage.setItem('bus_info', JSON.stringify(result));
+          console.log(JSON.stringify(result));
+          window.location.href = '/adminticketselect'
+        })
+    });
+  </script>
+</body>
+
+</html>

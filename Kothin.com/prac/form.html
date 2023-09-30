@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Form</title>
+	<style>
+		.me {
+			margin: 100px 600px;
+		}
+	</style>
+</head>
+
+<body background="1393237.jpg">
+
+	<h1>Enter Personal Details for Bonus Increment</h1>
+	<h1>Welcome to our Bus Booking System</h1>
+
+	<form action="" method="post" class="me">
+		<div>
+			<label for="from">From:</label>
+			<input type="text" name="from" id="from" placeholder="Enter your starting point">
+		</div>
+
+		<br>
+		<label for="to">To:</label>
+		<input type="text" name="to" id="to" placeholder="Enter your destination">
+		<br>
+		<label for="date">Date of Travel:</label>
+		<input type="date" name="date" id="date">
+		<br>
+		<label for="seat">Number of Seats:</label>
+		<input type="number" name="seat" id="seat" min="1" max="10">
+		<br>
+		<label for="bus">Select your Bus:</label>
+		<select id="bus" name="bus">
+			<option value="">--Choose your bus--</option>
+			<option value="volvo">Volvo</option>
+			<option value="mercedes">Mercedes</option>
+			<option value="scania">Scania</option>
+		</select>
+
+		<input type="submit" name="submit" value="Search Buses">
+	</form>
+
+
+</body>
+
+</html>

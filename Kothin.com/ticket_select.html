@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link href="https://unsplash.com/s/photos/bus"> -->
+  <title>Menu</title>
+  <style>
+    body {
+      background: url('./static/13.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .navbar__a {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 50%;
+    }
+
+    .navbar__a a {
+      text-align: center;
+      padding: 6px 6px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      cursor: pointer;
+      margin: 0% 2%;
+    }
+
+    .navbar__a a:hover {
+      color: rgb(236, 231, 231);
+      background-color: rgba(5, 61, 110, 0.771);
+      border-radius: 4px;
+    }
+
+    /* .navbar__a a:active {
+      color: rgb(236, 231, 231);
+      background-color: rgba(5, 61, 110, 0.771);
+      border-radius: 4px;
+    } */
+
+    .nav__flex a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .nav__flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 40px;
+      border-radius: 30px;
+      background-color: white;
+      padding: 2px 30px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      font-family: cursive;
+    }
+
+    .home {
+      /* border: 4px solid red; */
+      text-align: center;
+      font-size: large;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      padding: 10px;
+      color: rgb(0, 0, 0);
+    }
+
+    #logoutbtn {
+      display: none;
+      text-align: center;
+      padding: 6px 6px;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      cursor: pointer;
+      margin: 0% 2%;
+    }
+
+    #logoutbtn:hover {
+      color: rgb(236, 231, 231);
+      background-color: rgba(244, 41, 10, 0.771);
+      border-radius: 4px;
+    }
+
+    #register {
+      display: block;
+    }
+
+    .busses {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+
+    }
+
+    .bus-1,
+    .bus-2 {
+      display: flex;
+      flex-direction: column;
+      margin: 0px 80px;
+      background-color: #fff;
+      padding: 20px 20px;
+      border-radius: 10px;
+      width: 250px;
+    }
+
+    .book>h3 {
+      margin: 0px 0px;
+    }
+
+    .book {
+      height: 40px;
+      cursor: pointer;
+      border-radius: 5px;
+      background-color: #0d9008;
+      color: white;
+    }
+
+    .seats {
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 150px;
+    }
+
+    .seat_seg {
+      display: flex;
+      justify-content: center;
+      width: 250px;
+      background-color: #3b2cac;
+
+    }
+
+    .seat_no {
+      margin: 10px 10px;
+      text-align: center;
+      width: 30px;
+      height: 25px;
+      background-color: #ffffff;
+      background-color: white;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .seat_no:hover {
+      cursor: pointer;
+    }
+
+    #a {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    #j {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .bus1_seats,
+    .bus2_seats {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    #bus1_show,
+    #bus2_show {
+      display: none;
+    }
+
+    .indication {
+      display: flex;
+      background-color: rgb(63 63 81);
+      color: #fff;
+      margin-top: 5px;
+      padding-right: 10px;
+      border-radius: 12px;
+    }
+
+    .seat_nona {
+      margin: 10px 10px;
+      margin-left: 30px;
+      text-align: center;
+      width: 30px;
+      height: 25px;
+      background-color: #888888b8;
+
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .seat_nob {
+      margin: 10px 10px;
+      margin-left: 30px;
+      text-align: center;
+      width: 30px;
+      height: 25px;
+      background-color: lime;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .seat_noa {
+      margin: 10px 10px;
+      margin-left: 30px;
+      text-align: center;
+      width: 30px;
+      height: 25px;
+      background-color: white;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .middle {
+      margin-right: 50px;
+    }
+
+    #inpay {
+      display: none;
+    }
+
+    .pay {
+      display: flex;
+      justify-content: center;
+      margin-top: 25px;
+    }
+
+    #pay {
+      color: white;
+      border-radius: 10px;
+      background-color: #0d9008;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    #cancel {
+      color: rgb(255, 255, 255);
+      border-radius: 10px;
+      background-color: #d23e0c;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    #modi {
+      margin: 0px 0px;
+
+    }
+
+    #modify {
+      height: 45px;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #f29729;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav__flex">
+    <a href="/">
+      <h5 class="logo">Kothin.com</h5>
+    </a>
+    <div class="navbar__a">
+      <a href="/"><strong> Home</strong></a>
+      <a href="/about"><strong> About</strong></a>
+      <a href="/contact"><strong>Contact</strong></a>
+      <a href="/menu"><strong>Buy Tickets</strong></a>
+      <a href="/login" id="login"><strong>Login</strong></a>
+      <div id="logoutbtn" onclick="logout()"><strong>Logout</strong></div>
+      <!-- <button id="logoutbtn" onclick="logout()"><strong>Logout</strong></button> -->
+      <a href="/register" id="register"><strong>Register</strong></a>
+    </div>
+  </div>
+  <br>
+  <div class="home" id="home">
+    <h1>Select your Bus</h1>
+    <button id="modify">
+      <h3 id="modi">Modify search</h3>
+    </button>
+  </div>
+
+  <div class="busses">
+    <div>
+      <div class="bus-1" id="bus-1">
+        <div id="bus1_details">
+
+        </div>
+        <div class="booking">
+          <button type="button" class="book" id="book1">
+            <h3>Book now1</h3>
+          </button>
+        </div>
+      </div>
+
+      <div class="bus1_show" id="bus1_show">
+        <div class="indication">
+          <div class="seat_nona"></div>
+          <h3>Not available1</h3>
+          <div class="seat_nob"></div>
+          <h3>Booked</h3>
+          <div class="seat_noa"></div>
+          <h3>Available</h3>
+
+        </div>
+        <div class="bus1_seats" id="bus1_seats">
+          <div class="seat_seg" id="a">
+            <div class="seat_no" id="bus1a1" onclick="ticket('Bus-1','a1')">a1</div>
+            <div class="seat_no middle" id="bus1a2" onclick="ticket('Bus-1','a2')">a2</div>
+            <div class="seat_no" id="bus1a3" onclick="ticket('Bus-1','a3')">a3</div>
+            <div class="seat_no" id="bus1a4" onclick="ticket('Bus-1','a4')">a4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus1b1" onclick="ticket('Bus-1','b1')">b1</div>
+            <div class="seat_no middle" id="bus1b2" onclick="ticket('Bus-1','b2')">b2</div>
+            <div class="seat_no" id="bus1b3" onclick="ticket('Bus-1','b3')">b3</div>
+            <div class="seat_no" id="bus1b4" onclick="ticket('Bus-1','b4')">b4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus1c1" onclick="ticket('Bus-1','c1')">c1</div>
+            <div class="seat_no middle" id="bus1c2" onclick="ticket('Bus-1','c2')">c2</div>
+            <div class="seat_no" id="bus1c3" onclick="ticket('Bus-1','c3')">c3</div>
+            <div class="seat_no" id="bus1c4" onclick="ticket('Bus-1','c4')">c4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus1d1" onclick="ticket('Bus-1','d1')">d1</div>
+            <div class="seat_no middle" id="bus1d2" onclick="ticket('Bus-1','d2')">d2</div>
+            <div class="seat_no" id="bus1d3" onclick="ticket('Bus-1','d3')">d3</div>
+            <div class="seat_no" id="bus1d4" onclick="ticket('Bus-1','d4')">d4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus1e1" onclick="ticket('Bus-1','e1')">e1</div>
+            <div class="seat_no middle" id="bus1e2" onclick="ticket('Bus-1','e2')">e2</div>
+            <div class="seat_no" id="bus1e3" onclick="ticket('Bus-1','e3')">e3</div>
+            <div class="seat_no" id="bus1e4" onclick="ticket('Bus-1','e4')">e4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus1f1" onclick="ticket('Bus-1','f1')">f1</div>
+            <div class="seat_no middle" id="bus1f2" onclick="ticket('Bus-1','f2')">f2</div>
+            <div class="seat_no" id="bus1f3" onclick="ticket('Bus-1','f3')">f3</div>
+            <div class="seat_no" id="bus1f4" onclick="ticket('Bus-1','f4')">f4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus1g1" onclick="ticket('Bus-1','g1')">g1</div>
+            <div class="seat_no middle" id="bus1g2" onclick="ticket('Bus-1','g2')">g2</div>
+            <div class="seat_no" id="bus1g3" onclick="ticket('Bus-1','g3')">g3</div>
+            <div class="seat_no" id="bus1g4" onclick="ticket('Bus-1','g4')">g4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus1h1" onclick="ticket('Bus-1','h1')">h1</div>
+            <div class="seat_no middle" id="bus1h2" onclick="ticket('Bus-1','h2')">h2</div>
+            <div class="seat_no" id="bus1h3" onclick="ticket('Bus-1','h3')">h3</div>
+            <div class="seat_no" id="bus1h4" onclick="ticket('Bus-1','h4')">h4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus1i1" onclick="ticket('Bus-1','i1')">i1</div>
+            <div class="seat_no middle" id="bus1i2" onclick="ticket('Bus-1','i2')">i2</div>
+            <div class="seat_no" id="bus1i3" onclick="ticket('Bus-1','i3')">i3</div>
+            <div class="seat_no" id="bus1i4" onclick="ticket('Bus-1','i4')">i4</div>
+          </div>
+          <div class="seat_seg" id="j">
+            <div class="seat_no" id="bus1j1" onclick="ticket('Bus-1','j1')">j1</div>
+            <div class="seat_no middle" id="bus1j2" onclick="ticket('Bus-1','j2')">j2</div>
+            <div class="seat_no" id="bus1j3" onclick="ticket('Bus-1','j3')">j3</div>
+            <div class="seat_no" id="bus1j4" onclick="ticket('Bus-1','j4')">j4</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div>
+      <div class="bus-2" id="bus-2">
+        <div id="bus2_details">
+
+        </div>
+        <div class="booking">
+          <button type="button" class="book" id="book2">
+            <h3>Book now2</h3>
+          </button>
+        </div>
+      </div>
+
+      <div class="bus2_show" id="bus2_show">
+        <div class="indication">
+          <div class="seat_nona"></div>
+          <h3>Not available2</h3>
+          <div class="seat_nob"></div>
+          <h3>Booked</h3>
+          <div class="seat_noa"></div>
+          <h3>Available</h3>
+
+        </div>
+        <div class="bus2_seats" id="bus2_seats">
+          <div class="seat_seg" id="a">
+            <div class="seat_no" id="bus2a1" onclick="ticket('Bus-2','a1')">a1</div>
+            <div class="seat_no middle" id="bus2a2" onclick="ticket('Bus-2','a2')">a2</div>
+            <div class="seat_no" id="bus2a3" onclick="ticket('Bus-2','a3')">a3</div>
+            <div class="seat_no" id="bus2a4" onclick="ticket('Bus-2','a4')">a4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus2b1" onclick="ticket('Bus-2','b1')">b1</div>
+            <div class="seat_no middle" id="bus2b2" onclick="ticket('Bus-2','b2')">b2</div>
+            <div class="seat_no" id="bus2b3" onclick="ticket('Bus-2','b3')">b3</div>
+            <div class="seat_no" id="bus2b4" onclick="ticket('Bus-2','b4')">b4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus2c1" onclick="ticket('Bus-2','c1')">c1</div>
+            <div class="seat_no middle" id="bus2c2" onclick="ticket('Bus-2','c2')">c2</div>
+            <div class="seat_no" id="bus2c3" onclick="ticket('Bus-2','c3')">c3</div>
+            <div class="seat_no" id="bus2c4" onclick="ticket('Bus-2','c4')">c4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus2d1" onclick="ticket('Bus-2','d1')">d1</div>
+            <div class="seat_no middle" id="bus2d2" onclick="ticket('Bus-2','d2')">d2</div>
+            <div class="seat_no" id="bus2d3" onclick="ticket('Bus-2','d3')">d3</div>
+            <div class="seat_no" id="bus2d4" onclick="ticket('Bus-2','d4')">d4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus2e1" onclick="ticket('Bus-2','e1')">e1</div>
+            <div class="seat_no middle" id="bus2e2" onclick="ticket('Bus-2','e2')">e2</div>
+            <div class="seat_no" id="bus2e3" onclick="ticket('Bus-2','e3')">e3</div>
+            <div class="seat_no" id="bus2e4" onclick="ticket('Bus-2','e4')">e4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus2f1" onclick="ticket('Bus-2','f1')">f1</div>
+            <div class="seat_no middle" id="bus2f2" onclick="ticket('Bus-2','f2')">f2</div>
+            <div class="seat_no" id="bus2f3" onclick="ticket('Bus-2','f3')">f3</div>
+            <div class="seat_no" id="bus2f4" onclick="ticket('Bus-2','f4')">f4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus2g1" onclick="ticket('Bus-2','g1')">g1</div>
+            <div class="seat_no middle" id="bus2g2" onclick="ticket('Bus-2','g2')">g2</div>
+            <div class="seat_no" id="bus2g3" onclick="ticket('Bus-2','g3')">g3</div>
+            <div class="seat_no" id="bus2g4" onclick="ticket('Bus-2','g4')">g4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus2h1" onclick="ticket('Bus-2','h1')">h1</div>
+            <div class="seat_no middle" id="bus2h2" onclick="ticket('Bus-2','h2')">h2</div>
+            <div class="seat_no" id="bus2h3" onclick="ticket('Bus-2','h3')">h3</div>
+            <div class="seat_no" id="bus2h4" onclick="ticket('Bus-2','h4')">h4</div>
+          </div>
+          <div class="seat_seg">
+            <div class="seat_no" id="bus2i1" onclick="ticket('Bus-2','i1')">i1</div>
+            <div class="seat_no middle" id="bus2i2" onclick="ticket('Bus-2','i2')">i2</div>
+            <div class="seat_no" id="bus2i3" onclick="ticket('Bus-2','i3')">i3</div>
+            <div class="seat_no" id="bus2i4" onclick="ticket('Bus-2','i4')">i4</div>
+          </div>
+          <div class="seat_seg" id="j">
+            <div class="seat_no" id="bus2j1" onclick="ticket('Bus-2','j1')">j1</div>
+            <div class="seat_no middle" id="bus2j2" onclick="ticket('Bus-2','j2')">j2</div>
+            <div class="seat_no" id="bus2j3" onclick="ticket('Bus-2','j3')">j3</div>
+            <div class="seat_no" id="bus2j4" onclick="ticket('Bus-2','j4')">j4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="inpay">
+    <div class="pay">
+      <button id="pay">
+        <h2>Proceed to Payment</h2>
+      </button>
+      <button id="cancel">
+        <h2>Cancel Booking</h2>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    //window.location.reload();
+    window.addEventListener('popstate', () => {
+      window.location.reload();
+    })
+    document.getElementById('book1').addEventListener('click', () => {
+      document.getElementById('bus1_show').style.display = 'block'
+      document.getElementById('inpay').style.display = 'block'
+      document.getElementById('bus2_show').style.display = 'none'
+    })
+    document.getElementById('book2').addEventListener('click', () => {
+      document.getElementById('bus2_show').style.display = 'block'
+      document.getElementById('inpay').style.display = 'block'
+      document.getElementById('bus1_show').style.display = 'none'
+    })
+    let details = sessionStorage.getItem('bus_info');
+    details = JSON.parse(details);
+    console.log('details1', details);
+    
+    /*if (details.length == 1) {
+      if (details[0].busname == 'Bus-1') {
+        details.push = { busname: "Bus-2", starting_from: "Not Available", destination: "Not Available", doj: "Not Available", deperture: "Not Available", nos: "Not Available" }
+        document.getElementById('bus-2').style.display = 'none';
+        document.getElementById('bus2_show').style.display = 'none';
+      }
+      else {
+        let temp = details[0];
+        details[0] = { busname: "Bus-1", starting_from: "Not Available", destination: "Not Available", doj: "Not Available", deperture: "Not Available", nos: 0 };
+        details.push(temp);
+        document.getElementById('bus-1').style.display = 'none';
+        document.getElementById('bus1_show').style.display = 'none';
+      }
+    }*/
+    fetch('/ticketselect6', {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(details)
+    }).then(response => response.json())
+      .then(result => {
+        console.log('details', result)
+        details = result;
+        if (details.length == 1) {
+          if (details[0].busname == 'Bus-1') {
+            details.push = { busname: "Bus-2", starting_from: "Not Available", destination: "Not Available", doj: "Not Available", deperture: "Not Available", nos: "Not Available" }
+            document.getElementById('bus-2').style.display = 'none';
+            document.getElementById('bus2_show').style.display = 'none';
+          }
+          else {
+            let temp = details[0];
+            details[0] = { busname: "Bus-1", starting_from: "Not Available", destination: "Not Available", doj: "Not Available", deperture: "Not Available", nos: 0 };
+            details.push(temp);
+            document.getElementById('bus-1').style.display = 'none';
+            document.getElementById('bus1_show').style.display = 'none';
+          }
+        }
+        document.getElementById('bus1_details').innerHTML = `<h2>${details[0].busname}</h2>
+    <h3>Starting from : ${details[0].starting_from}</h3>
+    <h3>Destination : ${details[0].destination}</h3>
+    <h3>Date of Journey : ${details[0].doj}</h3>
+    <h3>Deperture time : ${details[0].deperture}</h3>
+    <h3>Seats available : ${details[0].nos}</h3>`
+        document.getElementById('bus2_details').innerHTML = `<h2>${details[1].busname}</h2>
+    <h3>Starting from : ${details[1].starting_from}</h3>
+    <h3>Destination : ${details[1].destination}</h3>
+    <h3>Date of Journey : ${details[1].doj}</h3>
+    <h3>Deperture time : ${details[1].deperture}</h3>
+    <h3>Seats available : ${details[1].nos}</h3>`
+      })
+
+
+    <!-- alert("hello there!"); -->
+    //document.getElementById('home').style.display='none';
+    let info = sessionStorage.getItem('userinfo');
+    info = JSON.parse(info);
+    console.log(info);
+    document.getElementById('login').innerHTML = `<strong>${info.name}</strong>`
+    if (info) {
+      logoutbtn = document.getElementById('logoutbtn');
+      logoutbtn.style.display = 'block'
+      register = document.getElementById('register')
+      register.style.display = 'none'
+    }
+
+    console.log(sessionStorage);
+    //document.getElementById(`bus1a1`).style.backgroundColor='white';
+    let count1 = 0;
+    let count2 = 0;
+    console.log('2',details);
+    let another=details;
+    console.log(another);
+    if (details[0].starting_from != "Not Available") {
+      for (let i = 97; i <= 106; i++) {
+        console.log(details);
+        /*document.getElementById(`bus1${String.fromCharCode(i)}1`).style.backgroundColor='white';
+        document.getElementById(`bus1${String.fromCharCode(i)}2`).style.backgroundColor='white';
+        document.getElementById(`bus1${String.fromCharCode(i)}3`).style.backgroundColor='white';
+        document.getElementById(`bus1${String.fromCharCode(i)}4`).style.backgroundColor='white';*/
+        for (let j = 1; j <= 4; j++) {
+          let name = details[0].busname;
+          let start = details[0].starting_from;
+          let reach = details[0].destination;
+          let date = details[0].doj;
+          let time = details[0].deperture;
+          let s = `${String.fromCharCode(i)}${j}`;
+          let mail = info.email;
+          let data = { name, start, reach, date, time, s, mail };
+          fetch('/ticketselect', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data)
+          }).then(response => {
+            return response.json();
+          }).then(result => {
+            console.log(result);
+            document.getElementById(`bus1${String.fromCharCode(i)}${j}`).style.backgroundColor = result.state;
+            if (result.state == 'white') {
+              count1 = count1 + 1;
+            }
+            console.log(count1);
+            /*document.getElementById('bus1_details').innerHTML = `<h2>${details[0].busname}</h2>
+      <h3>Starting from : ${details[0].starting_from}</h3>
+      <h3>Destination : ${details[0].destination}</h3>
+      <h3>Date of Journey : ${details[0].doj}</h3>
+      <h3>Deperture time : ${details[0].deperture}</h3>
+      <h3>Seats available : ${count1}</h3>`*/
+            /*setTimeout(() => {
+              if (document.getElementById(`bus1${String.fromCharCode(i)}${j}`).style.backgroundColor == 'lime') {
+                name = details[0].busname;
+                start = details[0].starting_from;
+                reach = details[0].destination;
+                date = details[0].doj;
+                time = details[0].deperture;
+                s = `${String.fromCharCode(i)}${j}`;
+                mail = info.email;
+                data = { name, start, reach, date, time, s, mail };
+                fetch('/ticketselect3', {
+                  method: "POST",
+                  headers: { "content-type": "application/json" },
+                  body: JSON.stringify(data)
+                }).then(response => {
+                  return response.json();
+                }).then(result => {
+                  console.log(result);
+                  if (result.status == 'done') {
+                    document.getElementById(`bus1${String.fromCharCode(i)}${j}`).style.backgroundColor = 'white';
+                  }
+                })
+              }
+            }, 60000)*/
+          })
+        }
+      }
+    }
+    if (details[1].starting_from != "Not Available") {
+      for (let i = 97; i <= 106; i++) {
+        console.log(details);
+        /*document.getElementById(`bus2${String.fromCharCode(i)}1`).style.backgroundColor='white';
+        document.getElementById(`bus2${String.fromCharCode(i)}2`).style.backgroundColor='white';
+        document.getElementById(`bus2${String.fromCharCode(i)}3`).style.backgroundColor='white';
+        document.getElementById(`bus2${String.fromCharCode(i)}4`).style.backgroundColor='white';*/
+        for (let j = 1; j <= 4; j++) {
+          name = details[1].busname;
+          start = details[1].starting_from;
+          reach = details[1].destination;
+          date = details[1].doj;
+          time = details[1].deperture;
+          s = `${String.fromCharCode(i)}${j}`;
+          mail = info.email;
+          data = { name, start, reach, date, time, s, mail };
+          fetch('/ticketselect', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data)
+          }).then(response => {
+            return response.json();
+          }).then(result => {
+            console.log(result);
+            console.log(result.state,'1');
+            document.getElementById(`bus2${String.fromCharCode(i)}${j}`).style.backgroundColor = result.state;
+            //console.log(document.getElementById(`bus2${String.fromCharCode(i)}${j}`).style.backgroundColor);
+            /*if (result.state == 'white') {
+              count2 = count2 + 1;
+            }
+            console.log(count2);*/
+            /*document.getElementById('bus2_details').innerHTML = `<h2>${details[0].busname}</h2>
+      <h3>Starting from : ${details[1].starting_from}</h3>
+      <h3>Destination : ${details[1].destination}</h3>
+      <h3>Date of Journey : ${details[1].doj}</h3>
+      <h3>Deperture time : ${details[1].deperture}</h3>
+      <h3>Seats available : ${count2}</h3>`*/
+            /*setTimeout(() => {
+              if (document.getElementById(`bus2${String.fromCharCode(i)}${j}`).style.backgroundColor == 'lime') {
+                name = details[1].busname;
+                start = details[1].starting_from;
+                reach = details[1].destination;
+                date = details[1].doj;
+                time = details[1].deperture;
+                s = `${String.fromCharCode(i)}${j}`;
+                mail = info.email;
+                data = { name, start, reach, date, time, s, mail };
+                fetch('/ticketselect3', {
+                  method: "POST",
+                  headers: { "content-type": "application/json" },
+                  body: JSON.stringify(data)
+                }).then(response => {
+                  return response.json();
+                }).then(result => {
+                  console.log(result);
+                  if (result.status == 'done') {
+                    document.getElementById(`bus2${String.fromCharCode(i)}${j}`).style.backgroundColor = 'white';
+                  }
+                })
+              }
+            }, 60000)*/
+          })
+        }
+      }
+    }
+
+
+
+    let t = 120000;
+    let timer = {};
+    let id;
+    function ticket(x, y) {
+      console.log(x, y);
+
+      //document.getElementById(`bus1${y}`).style.backgroundColor='white'
+      //console.log(document.getElementById(`bus1${y}`).style.backgroundColor);
+      if (x == 'Bus-1') {
+        console.log('bus1');
+        if (document.getElementById(`bus1${y}`).style.backgroundColor == 'white') {
+          document.getElementById(`bus1${y}`).style.backgroundColor = 'lime'
+          //t = 40000;
+          name = details[0].busname;
+          start = details[0].starting_from;
+          reach = details[0].destination;
+          date = details[0].doj;
+          time = details[0].deperture;
+          s = y;
+          mail = info.email;
+          data = { name, start, reach, date, time, s, mail };
+          fetch('/ticketselect1', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data)
+          }).then(response => {
+            return response.json();
+          }).then(result => {
+            console.log(result);
+          })
+
+          id = setTimeout(() => {
+            if (document.getElementById(`bus1${y}`).style.backgroundColor == 'lime') {
+              document.getElementById(`bus1${y}`).style.backgroundColor = 'white'
+              name = details[0].busname;
+              start = details[0].starting_from;
+              reach = details[0].destination;
+              date = details[0].doj;
+              time = details[0].deperture;
+              s = y;
+              mail = info.email;
+              data = { name, start, reach, date, time, s, mail };
+              fetch('/ticketselect2', {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(data)
+              }).then(response => {
+                return response.json();
+              }).then(result => {
+                console.log(result);
+              })
+            }
+          }, t)
+          timer[`${mail}${name}${start}${reach}${date}${s}`] = id;
+          console.log(id, 'helllo');
+        }
+        else if (document.getElementById(`bus1${y}`).style.backgroundColor == 'lime') {
+          console.log(id, 'No');
+          name = details[0].busname;
+          start = details[0].starting_from;
+          reach = details[0].destination;
+          date = details[0].doj;
+          time = details[0].deperture;
+          s = y;
+          mail = info.email;
+          data = { name, start, reach, date, time, s, mail };
+          fetch('/ticketselect2', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data)
+          }).then(response => {
+            return response.json();
+          }).then(result => {
+            console.log(result);
+            if (result.status == 'done') {
+              document.getElementById(`bus1${y}`).style.backgroundColor = 'white';
+            }
+          })
+          clearTimeout(timer[`${mail}${name}${start}${reach}${date}${s}`]);
+        }
+      }
+      else if (x == 'Bus-2') {
+        console.log('bus2');
+        console.log(document.getElementById(`bus2${y}`).style.backgroundColor);
+        if (document.getElementById(`bus2${y}`).style.backgroundColor == 'white') {
+          //console.log("white");
+          document.getElementById(`bus2${y}`).style.backgroundColor = 'lime'
+          //t = 40000;
+          name = details[1].busname;
+          start = details[1].starting_from;
+          reach = details[1].destination;
+          date = details[1].doj;
+          time = details[1].deperture;
+          s = y;
+          mail = info.email;
+          data = { name, start, reach, date, time, s, mail };
+          fetch('/ticketselect1', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data)
+          }).then(response => {
+            return response.json();
+          }).then(result => {
+            console.log(result);
+          })
+          id = setTimeout(() => {
+            if (document.getElementById(`bus2${y}`).style.backgroundColor == 'lime') {
+              document.getElementById(`bus2${y}`).style.backgroundColor = 'white'
+              name = details[1].busname;
+              start = details[1].starting_from;
+              reach = details[1].destination;
+              date = details[1].doj;
+              time = details[1].deperture;
+              s = y;
+              mail = info.email;
+              data = { name, start, reach, date, time, s, mail };
+              fetch('/ticketselect2', {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify(data)
+              }).then(response => {
+                return response.json();
+              }).then(result => {
+                console.log(result);
+              })
+            }
+          }, t)
+          timer[`${mail}${name}${start}${reach}${date}${s}`] = id;
+          console.log(id, "hello")
+
+        }
+        else if (document.getElementById(`bus2${y}`).style.backgroundColor == 'lime') {
+          console.log(id, 'No');
+          name = details[1].busname;
+          start = details[1].starting_from;
+          reach = details[1].destination;
+          date = details[1].doj;
+          time = details[1].deperture;
+          s = y;
+          mail = info.email;
+          data = { name, start, reach, date, time, s, mail };
+          fetch('/ticketselect2', {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(data)
+          }).then(response => {
+            return response.json();
+          }).then(result => {
+            console.log(result);
+            if (result.status == 'done') {
+              document.getElementById(`bus2${y}`).style.backgroundColor = 'white';
+            }
+          })
+          clearTimeout(timer[`${mail}${name}${start}${reach}${date}${s}`]);
+
+        }
+      }
+
+    }
+    document.getElementById('pay').addEventListener('click', () => {
+      fetch('/ticketselect5', {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ mail: info.email })
+      }).then(response => {
+        return response.json();
+      }).then(result => {
+        console.log(result, "result", result.length);
+        if (result.length) {
+          for (let c = 0; c < result.length; c++) {
+            clearTimeout(timer[`${result[c].email}${result[c].busname}${result[c].starting_from}${result[c].destination}${result[c].doj}${result[c].seat}`]);
+          }
+
+          window.location.href = '/payment'
+        }
+        else {
+          alert("Select your seat first");
+        }
+      })
+    })
+    document.getElementById('cancel').addEventListener('click', () => {
+      fetch('/ticketselect4', {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ mail: info.email })
+      }).then(response => {
+        return response.json();
+      }).then(result => {
+        console.log(result);
+        for (let c = 0; c < result.length; c++) {
+          clearTimeout(timer[`${result[c].email}${result[c].busname}${result[c].starting_from}${result[c].destination}${result[c].doj}${result[c].seat}`]);
+        }
+      })
+      location.reload();
+    })
+    document.getElementById('modify').addEventListener('click', () => {
+      fetch('/ticketselect4', {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ mail: info.email })
+      }).then(response => {
+        return response.json();
+      }).then(result => {
+        console.log(result);
+        for (let c = 0; c < result.length; c++) {
+          clearTimeout(timer[`${result[c].email}${result[c].busname}${result[c].starting_from}${result[c].destination}${result[c].doj}${result[c].seat}`]);
+        }
+      })
+      sessionStorage.removeItem('bus_info');
+      window.location.href = '/menu';
+    })
+    function logout() {
+
+      fetch('/ticketselect4', {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ mail: info.email })
+      }).then(response => {
+        return response.json();
+      }).then(result => {
+        console.log(result);
+      })
+      sessionStorage.clear();
+      console.log(sessionStorage.getItem('userinfo'))
+      register = document.getElementById('register')
+      register.style.display = 'block'
+      logoutbtn = document.getElementById('logoutbtn');
+      logoutbtn.style.display = 'none'
+      document.getElementById('login').innerHTML = `<strong>Login</strong>`
+      window.location.href = '/login'
+
+
+    }
+
+
+
+
+
+  </script>
+</body>
+
+</html>
